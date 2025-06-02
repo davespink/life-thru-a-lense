@@ -26,14 +26,29 @@ Move over to a templated version so that I don't need to deal with creating the 
 
 
 <head>
-  <title>Blogging For Fun</title>
+  <title>Life Thru A lense</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 
   <style>
+    :root {
+      --primary-bg: #080202;
+      --secondary-bg: #0802021c;
+      --accent: #ff9800;
+      --button-bg: black;
+      --button-text:white;
+      --card-bg: beige;
+      --alert-error: #f44336;
+      --alert-warning: #ff9800;
+      --sidebar-btn-bg: #f1f1f1;
+      --sidebar-btn-hover: #e1e1e1;
+      --text-main: black;
+      --text-alt: white;
+      --border-main: white;
+    }
+
     html,
     body,
     h1,
@@ -49,6 +64,14 @@ Move over to a templated version so that I don't need to deal with creating the 
       font-size: 60px;
     }
 
+    body {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-alt);
+      background-color: var(--primary-bg);
+      margin: 0;
+      padding: 0;
+    }
 
     table,
     th,
@@ -76,7 +99,6 @@ Move over to a templated version so that I don't need to deal with creating the 
 
 
     #middle-column {
-
       /* Adjust height as needed */
       height: 1000px;
       overflow-y: auto;
@@ -158,8 +180,8 @@ Move over to a templated version so that I don't need to deal with creating the 
       font-size: 16px;
       border: 1px solid #333;
       border-radius: 2px;
-      background: #f0f0f0;
-      color: #222;
+      background: var(--button-bg);
+      color: var(--button-text);
       cursor: pointer;
       transition: background 0.2s;
       text-align: center;
@@ -169,6 +191,13 @@ Move over to a templated version so that I don't need to deal with creating the 
       background: #e0e0e0;
     }
 
+    .white-text {
+      color: var(--text-alt);
+    }
+
+    .black-text {
+      color: var(--text-main);
+    }
     /* Style the content row: image left, text right */
     .template-content {
       display: flex;
@@ -248,12 +277,6 @@ Move over to a templated version so that I don't need to deal with creating the 
         box-sizing: border-box;
       }
 
-      #middle-column {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        float: none !important;
-        display: block !important;
-      }
 
       .admin {
         display: none !important;
@@ -266,6 +289,15 @@ Move over to a templated version so that I don't need to deal with creating the 
       #right-column {
         display: none !important;
       }
+
+
+      #middle-column {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+        display: block !important;
+      }
+
 
 
       .w3-col.m7 {
@@ -320,7 +352,7 @@ Move over to a templated version so that I don't need to deal with creating the 
   <!--
   <script src="lib.js"></script>
   -->
-  
+
 
   <script>
 
@@ -329,7 +361,7 @@ Move over to a templated version so that I don't need to deal with creating the 
     const onePost = false; // Set to true to show only one post at a time
     var isAdmin;
 
-  window.onload = async function () {
+    window.onload = async function () {
       await renderPosts();
       version.innerHTML = "v1.16 - 1 June 2025 lib " + getVersion();
       renderHashtags();
@@ -430,8 +462,7 @@ Move over to a templated version so that I don't need to deal with creating the 
             <p class="w3-center" onclick="scrollToPost();"
               style="cursor:pointer; color:blue; text-decoration:underline;"
               title="Click to scroll to the post with key 1746032695922">
-
-              <img src="images/blogging.jpg" class="w3-circle" style="height:120px;width:120px" alt="blog image">
+ 
             </p>
             <hr>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
@@ -454,7 +485,7 @@ Move over to a templated version so that I don't need to deal with creating the 
             <div>
               <div>
                 <div style="text-align:center">
-                  <h1>BLOGGING FOR FUN</h1>
+                  <h1>LIFE THRU A LENSE</h1>
                 </div>
                 <div class="  w3-card W3-FloralWhite w3-round w3-margin" style="margin-bottom:10px;padding:0px">
                   <br>
@@ -469,7 +500,7 @@ Move over to a templated version so that I don't need to deal with creating the 
                       <div class="w3-container">
                         <img src="images/blogging.jpg" alt="blog image" class="w3-left w3-margin-right"
                           style="width:150px;margin-bottom:10px">
-                        <h6>No one seems to blog for fun nowadays.</h6><br>
+                        <h6 class="black-text">No one seems to blog for fun nowadays.</h6><br>
                       </div>
 
                     </div>
@@ -484,7 +515,7 @@ Move over to a templated version so that I don't need to deal with creating the 
                     </div>
 
                     <div id="allPosts" class="w3-container w3-justify">
-                      <img src="images/blogging.jpg" alt="Blogging image" style="width:10%;max-width:600px;">
+                 
                     </div>
 
                     <template id="template-post">
@@ -504,7 +535,7 @@ Move over to a templated version so that I don't need to deal with creating the 
                             <button class="admin edit-btn" onclick=" ">Edit</button>
                             <button class="admin delete-btn" onclick=" ">Delete</button>
 
-                            <button class="readmore-btn" onclick="togglePost.call(this)"
+                            <button class="button readmore-btn" onclick="togglePost.call(this)"
                               aria-label="Toggle post content">Read More</button>
                           </div>
                         </div>
@@ -626,7 +657,7 @@ Move over to a templated version so that I don't need to deal with creating the 
 
       <!-- Right Column -->
       <div id="right-column" class="w3-col m3">
-        <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-card w3-round  w3-center">
           <div class="w3-container">
             <div class="w3-card w3-round w3-white w3-center">
               <div class="w3-container">
